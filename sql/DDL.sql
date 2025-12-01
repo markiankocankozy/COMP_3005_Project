@@ -69,7 +69,7 @@ CREATE TABLE Class_Registration (
     UNIQUE (MID, SCID)
 );
 
---make sure that the availability of a trainer does not overlap
+--make sure that the availabilities of a trainer do not overlap
 ALTER TABLE Trainer_Availability
 ADD CONSTRAINT ex_trainer_availability_no_overlap
 EXCLUDE USING gist (
