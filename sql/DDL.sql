@@ -69,6 +69,8 @@ CREATE TABLE Class_Registration (
     UNIQUE (MID, SCID)
 );
 
+CREATE EXTENSION IF NOT EXISTS btree_gist;
+
 --make sure that the availabilities of a trainer do not overlap
 ALTER TABLE Trainer_Availability
 ADD CONSTRAINT ex_trainer_availability_no_overlap
@@ -108,8 +110,6 @@ CREATE TRIGGER trg_class_capacity
 BEFORE INSERT ON Class_Registration
 FOR EACH ROW 
 EXECUTE FUNCTION check_class_capacity();
-
-CREATE EXTENSION IF NOT EXISTS btree_gist;
 
 --prevent a room from being used by two classes at the same time
 ALTER TABLE Scheduled_Class
